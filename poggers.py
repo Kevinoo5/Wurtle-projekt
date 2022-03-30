@@ -11,41 +11,37 @@ notletters = []
 
 ühendus = sqlite3.connect('data.db')
 c = ühendus.cursor()
-number = random.randint(1,2315)
-print(number)
-
-with open("stuff.txt") as f:
-
-    for line in f.readlines():
-        line = line.strip()
-        sonad.append(line)
-        id += 1
-        suva = c.execute("SELECT * FROM Wurtel WHERE ID = (?)", (number))
+number = random.randint(1,2315)      
         
-c.close
+c.execute("SELECT * FROM Wurtel WHERE ID = ?", [number])
+suva = c.fetchall()
+
 ühendus.commit()
-ühendus.close()
 
-# suvaline = random.choice(sonad).lower()
 true = False
-
 while count < 5:
     proov = input("Word please: ")
-    if len(proov) == 5:
+    c.execute("SELECT * FROM Allowed WHERE allowed = ?", [proov])
+    sona = c.fetchall()
+    if sona != []:
+        sona = sona[-1][0]
+    if proov in sona:
         for i in range(5):
-            if proov == suvaline:
+            if proov == suva[0][1]:
                 print("U are so smarterst")
                 true = True
                 exit()
-            elif proov[i] == suvaline[i] and true == False:
+            elif proov[i] == suva[0][1][i] and true == False:
                 blanks[i] = proov[i]
         for letter in proov:
-            if letter not in letters and letter in suvaline:
+            if letter not in letters and letter in suva[0][1]:
                 letters.append(letter)
-            elif letter not in notletters and letter not in suvaline:
+            elif letter not in notletters and letter not in suva[0][1]:
                 notletters.append(letter)
         count += 1
         print("Answer includes: " + ",".join(letters))
         print("Answer doesn't include: " + ",".join(notletters))
         print("".join(blanks))
-print(suvaline)
+print(suva[0][1])
+c.close()
+ühendus.close()
