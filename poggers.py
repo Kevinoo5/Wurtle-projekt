@@ -33,7 +33,7 @@ elif inputtabel == "six":
 elif inputtabel == "seven":
     number = random.randint(1, 1371)
 else:
-    print("El Salvador")
+    print("Insert number please")
     exit()
         
 c.execute(f"SELECT * FROM {inputtabel} WHERE ID = ?", [number])
