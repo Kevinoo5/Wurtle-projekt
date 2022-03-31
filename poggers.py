@@ -7,26 +7,48 @@ id = 1
 blanks = ["-","-","-","-","-"]
 letters = []
 notletters = []
-
-
+integer = 0
+inputtabel = input("Insert letter amount between 5 and 7 (with words): ")
+if inputtabel == "five":
+    integer = 5
+elif inputtabel == "six":
+    integer = 6
+elif inputtabel == "seven":
+    integer = 7
+    
+if inputtabel == "five":
+    blanks = ["-","-","-","-","-"]
+elif inputtabel == "six":
+    blanks = ["-","-","-","-","-","-"]
+elif inputtabel == "seven":
+    blanks = ["-","-","-","-","-","-","-"]
+    
 ühendus = sqlite3.connect('data.db')
 c = ühendus.cursor()
-number = random.randint(1,2315)      
-        
-c.execute("SELECT * FROM Wurtel WHERE ID = ?", [number])
-suva = c.fetchall()
 
+if inputtabel == "five":
+    number = random.randint(1, 2315)
+elif inputtabel == "six":
+    number = random.randint(1, 1049)
+elif inputtabel == "seven":
+    number = random.randint(1, 1371)
+else:
+    print("El Salvador")
+    exit()
+        
+c.execute(f"SELECT * FROM {inputtabel} WHERE ID = ?", [number])
+suva = c.fetchall()
 ühendus.commit()
 
 true = False
-while count < 5:
+while count < integer:
     proov = input("Word please: ")
-    c.execute("SELECT * FROM Allowed WHERE allowed = ?", [proov])
+    c.execute(f"SELECT * FROM Allowed{str(integer)} WHERE allowed = ?", [proov])
     sona = c.fetchall()
     if sona != []:
         sona = sona[-1][0]
     if proov in sona:
-        for i in range(5):
+        for i in range(integer):
             if proov == suva[0][1]:
                 print("U are so smarterst")
                 true = True
