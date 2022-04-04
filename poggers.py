@@ -237,7 +237,6 @@ def hide3(button1, button2):
     button2.destroy()
     letter7()
 
-# Button2 = Button(master,text='click me',command=lambda: callback_and_hide(Button2))
 label1 = Label(root, text='How many letters?', bg='tomato4', fg='white')
 canvas1.create_window(200, 20, window=label1)
 canvas1.create_window(150, 50, window=button1)
