@@ -22,7 +22,7 @@ def letter5():
         while len(count) < 7:
             proov = word.get()
             if len(proov) != 5:
-                messagebox.showwarning("showwarning", "OH NO!!! This is not in the list")
+                messagebox.showwarning("WARNING!!!", "OH NO!!! This is not in the list")
                 word.delete(0, 10)
                 return None
                 break
@@ -60,7 +60,7 @@ def letter5():
                 word.delete(0, 10)
                 return None
             else:
-                messagebox.showwarning("showwarning", "OH NO!!! This is not in the list")
+                messagebox.showwarning("WARNING!!!", "OH NO!!! This is not in the list")
                 word.delete(0, 20)
                 break
             
@@ -88,7 +88,7 @@ def letter6():
         while len(count) < 8:
             proov = word.get()
             if len(proov) != 6:
-                messagebox.showwarning("showwarning", "OH NO!!! This is not in the list")
+                messagebox.showwarning("WARNING!!!", "OH NO!!! This is not in the list")
                 word.delete(0, 10)
                 return None
                 break
@@ -130,7 +130,7 @@ def letter6():
                 word.delete(0, 10)
                 return None
             else:
-                messagebox.showwarning("showwarning", "OH NO!!! This is not in the list")
+                messagebox.showwarning("WARNING!!!", "OH NO!!! This is not in the list")
                 word.delete(0, 20)
                 break
         
@@ -156,7 +156,7 @@ def letter7():
         while len(count) < 9:
             proov = word.get()
             if len(proov) != 7:
-                messagebox.showwarning("showwarning", "OH NO!!! This is not in the list")
+                messagebox.showwarning("WARNING!!!", "OH NO!!! This is not in the list")
                 word.delete(0, 10)
                 return None
                 break
@@ -199,7 +199,7 @@ def letter7():
                 word.delete(0, 10)
                 return None
             else:
-                messagebox.showwarning("showwarning", "OH NO!!! This is not in the list")
+                messagebox.showwarning("WARNING!!!", "OH NO!!! This is not in the list")
                 word.delete(0, 20)
                 break
         
@@ -219,20 +219,23 @@ def letter7():
     
 
     
-button1 = Button(text='FIVE', bg = 'bisque2', command=lambda: hide1(button2, button3))
-button2 = Button(text='SIX', bg = 'lavender', command=lambda: hide2(button1, button3))
-button3 = Button(text='SEVEN', bg = 'LightBlue1', command=lambda: hide3(button1, button2))
-def hide1(button1, button2):
+button1 = Button(text='FIVE', bg = 'bisque2', command=lambda: hide1(button2, button3, button1))
+button2 = Button(text='SIX', bg = 'lavender', command=lambda: hide2(button1, button3, button2))
+button3 = Button(text='SEVEN', bg = 'LightBlue1', command=lambda: hide3(button1, button2, button3))
+def hide1(button1, button2, button3):
     button1.destroy()
     button2.destroy()
+    button3.destroy()
     letter5()
-def hide2(button1, button2):
+def hide2(button1, button2, button3):
     button1.destroy()
     button2.destroy()
+    button3.destroy()
     letter6()
-def hide3(button1, button2):
+def hide3(button1, button2, button3):
     button1.destroy()
     button2.destroy()
+    button3.destroy()
     letter7()
 
 label1 = Label(root, text='How many letters?', bg='tomato4', fg='white')
