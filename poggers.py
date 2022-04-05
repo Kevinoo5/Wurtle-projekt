@@ -92,9 +92,8 @@ def letter6():
                 word.delete(0, 10)
                 return None
                 break
-            c.execute(f"SELECT * FROM Allowed6 WHERE allowed = ?", [proov])
+            c.execute("SELECT * FROM Allowed6 WHERE allowed = ?", [proov])
             sona = c.fetchall()
-            print(suva)
             if proov == suva[0][1]:
                 messagebox.showinfo("U won!", "U so smartest! Be proud of yourself!")
                 true = True
@@ -154,7 +153,6 @@ def letter7():
     word = Entry(root)
     def get_word():
         true = False
-        print(suva)
         while len(count) < 9:
             proov = word.get()
             if len(proov) != 7:
